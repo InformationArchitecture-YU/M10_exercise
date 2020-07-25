@@ -86,4 +86,4 @@ s3pathName = '**S3_BUCKET_NAME**'  #specify name of your s3 bucket
 ## Completing the Exercise
 This concludes the exercise. Once you have completed the exercises, take a screenshot of the bucket and the zipped file loaded into your S3 bucket. It should look something like below, and be sure to provide that screenshot and the zipped package itself as an indication that you have completed the execise. Congratulations!
 
-![image info](./images/s3_upload_screenshot.png)
+![image info](./images/s3_upload_screenshot.PNG)
