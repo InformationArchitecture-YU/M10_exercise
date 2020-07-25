@@ -32,7 +32,9 @@ You also should have installed the DAV6100 database we have used in this class.
 
 For the s3fs and boto3 libraries it is important that you followed the exercises in M9 in order to complete assigning your AWS credentials and connect to AWs, create and upload a file to that location. 
 
-The exercise has scripts loaded into this GitHub in the following location: flat_file_exchange/scripts. You will need to downlaod these scripts in order to run them and complete the exercise. 
+The exercise has scripts loaded into this GitHub in the following location: flat_file_exchange/scripts. You will need to downlaod these scripts in order to run them to complete the exercise. 
+
+You will be graded on your output. 
 
 ## Step 1. Generate Dimension Files. Steps below. In this example, we will generate just one file. 
 After you have successfully downloaded the scripts and imported the requisite libraries you'll want to follow the first step to generate the dimensions. 
@@ -63,3 +65,23 @@ This step is pretty straight forward. We strip the latest file name and use it t
 directory_name = '**DIRECTORY_FOR_YOUR_FILE**'+'DAILY_DIMENSIONS_%s'%(executiontime)
 ```
 ## Step 3. Create check sum procedure
+This procedure uses the hashlib to read the CSV file, then generate the Hash output. Inspect the script and run it. 
+
+## Step 4: Zip files with checksum in directory called checksum.
+This step in the exercise will generate a zipped file, then save it to your specified location. You will have to be sure to specify where to save the zipped file. You can, of course, save it to the same directory as the folder that you created in Step 2. The output will provide the latest zipped file name. This will be important in providing the location of the zipped package for the s3 POST action. The zipped folder should contain both the MD5 hashed text file and the data dimension CSV file. 
+```
+file_regex_zip = re.compile(r'DAILY_DIMENSIONS_\d{14}.zip$')
+files_in_directory_zip = os.listdir('**DIRECTORY_WHERE_YOU_SAVED_YOUR_ZIP_FILE**')
+filtered_files_zip = [ x for x in files_in_directory_zip if file_regex_zip.match(x)]
+sorted_files_zip = sorted(filtered_files_zip,reverse=True)
+zipFileName = sorted_files_zip[0]
+```
+
+## Step 5: Load zipped package into AWS S3 with checksum.
+The final step is to load the zipped package containing the MD5 hash file and CSV file to S3. You will have to create an S3 bucket in your account and put that name below. Remember that AWS s3 Buckets must be unique. 
+```
+s3pathName = '**S3_BUCKET_NAME**'  #specify name of your s3 bucket
+```
+
+## Completing the Exercise
+This concludes the exercise. Once you have completed the exercises, take a screenshot of the bucket and the zipped file loaded into your S3 bucket. It should look something like below, and be sure to provide that screenshot and the zipped package itself as an indication that you have completed the execise. Congratulations!
