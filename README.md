@@ -13,7 +13,7 @@ In this exercise, you will follow the steps to create a flat file exchange from 
 ## What is the benefit of this exercise?
 Fundamentally, it is to learn about file verification processes. With this exercise you will get an opportunity to use the dimension files that we have created in previous labs. Moreover, this lab contains a <a href ="https://en.wikipedia.org/wiki/MD5"  target=”_blank”>MD5 hash procedure</a>, which will be generated from the dimension flat file that you have created. The MD5 hash algorithm will provide an output based on the data in the file. When the file is sent to the target database, the same check procedure. This same MD5 hash should produce the same output if the file has not been corrupted (data in the file has changed). If the file is corrupted (i.e., the data in the file has been altered), a different hashed output will occur and the file should be blocked. Hence, this procedure is used for data integrity and file verification processes. 
 
-![image info](./pictures/image.png)
+![image info](./images/md5_exchange.png)
 
 See <a href ="https://www.securityfocus.com/bid/11849/discuss" target=”_blank”>MD5 Message Digest Algorithm Hash Collision Weakness </a> and take note of the vulnerabilities of the MD5 hash algorithm in particular. Other <a href = "https://en.wikipedia.org/wiki/Secure_Hash_Algorithms"  target=”_blank”>hash alogorithms</a> are more secure and used for different security purposes. This exercise is meant to be a worked example. 
 
@@ -85,3 +85,5 @@ s3pathName = '**S3_BUCKET_NAME**'  #specify name of your s3 bucket
 
 ## Completing the Exercise
 This concludes the exercise. Once you have completed the exercises, take a screenshot of the bucket and the zipped file loaded into your S3 bucket. It should look something like below, and be sure to provide that screenshot and the zipped package itself as an indication that you have completed the execise. Congratulations!
+
+![image info](./images/s3_upload_screenshot.png)
