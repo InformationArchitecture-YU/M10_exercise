@@ -39,20 +39,27 @@ After you have successfully downloaded the scripts and imported the requisite li
 
 When running the script you will have to make sure you specify your MYSQL output location. This is in your options>security file location. It is the location where the OUTFILE function where place the file you have generated from the dimension. It might look something like this: 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads'
 
-'''
+```
 output_file_location = '**MYSQL_OUTPUT_FILE_LOCATION**'
-'''
+```
 
 Next you will have to enter your credentials for the local instance of your MySQL server. Note: we are using your local instance of MySQL to replicate the Source Database Server experience. This assumes that you are using local host and port 3306. 
-'''
+
+```
 connection = mysql.connector.connect(user='**MYSQL_USERNAME**', password='**MYSQL_PASSWORD**',host='localhost', port ='3306')
 print('Connected to database.')
 cursor = connection.cursor()
-'''
+```
+
 Once you have connected to the server, you will run dimension output example provided. This will only out put the date dimension for the dav6100 database you have installed. 
 You will need to make sure that the location is appropriately assigned:
-'''
+
+```
 sql_file = "**./dimension_output_example.sql**"
-'''
-
-
+```
+## Step 2. Move Files to folder 'checksum'
+This step is pretty straight forward. We strip the latest file name and use it to create a folder where the CSV will be placed. You will need to identify the directory for the location of this file.  This also takes the execution time of the file and uses it in the folder name. This will be helpful later to ensure we pull the latest set of files from the server. 
+```
+directory_name = '**DIRECTORY_FOR_YOUR_FILE**'+'DAILY_DIMENSIONS_%s'%(executiontime)
+```
+## Step 3. Create check sum procedure
